@@ -11,7 +11,18 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  createdAt DateTime @default(now())
+  id    String @id @default(uuid())
+  name  String
+  posts Post[]
+}
+
+model Post {
+  postId      String   @id @default(uuid())
+  authorId    String
+  title       String
+  description String
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  author      User     @relation(fields: [authorId], references: [id])
 }

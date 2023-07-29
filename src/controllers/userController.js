@@ -1,8 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient({
-  log: ['query'],
-})
+import { prisma } from '../lib/prisma.js'
 
 export function defaultRoute(req, reply) {
   reply.send({
@@ -22,7 +18,9 @@ export async function getUser(req, reply) {
     where: {
       id,
     },
+    include: { posts: true },
   })
+
   if (!user)
     reply.status(404).send({
       message: 'User not found',
