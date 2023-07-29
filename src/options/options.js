@@ -13,13 +13,23 @@ const POSTPROPS = {
     },
   },
 }
+const SINGLEPOSTPROPRS = {
+  type: 'array',
+  items: {
+    type: 'object',
+    properties: {
+      postId: { type: 'string' },
+      title: { type: 'string' },
+    },
+  },
+}
 
 const USERPROP = {
   type: 'object',
   properties: {
     id: { type: 'string' },
     name: { type: 'string' },
-    posts: POSTPROPS,
+    posts: SINGLEPOSTPROPRS,
   },
 }
 
